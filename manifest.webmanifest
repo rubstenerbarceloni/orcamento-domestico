@@ -1,7 +1,7 @@
 {
-  "name": "Orçamento Doméstico Cloud",
-  "short_name": "Orçamento Cloud",
-  "description": "Controle financeiro doméstico com login, backup, sincronização em nuvem e manual integrado.",
+  "name": "Orçamento Doméstico BI",
+  "short_name": "Orçamento BI",
+  "description": "Controle financeiro com dashboard BI, previsões, login e nuvem.",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#f8fafc",

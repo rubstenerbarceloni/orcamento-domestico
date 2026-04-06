@@ -8,56 +8,60 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="default" />
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="apple-touch-icon" href="icon-192.png" />
-  <title>Orçamento Doméstico Cloud</title>
+  <title>Orçamento Doméstico BI</title>
   <style>
     :root{
       --bg:#f8fafc;--card:#fff;--text:#0f172a;--muted:#475569;--primary:#1d4ed8;--soft:#dbeafe;
-      --success:#16a34a;--danger:#dc2626;--warning-soft:#fef3c7;--shadow:0 12px 32px rgba(15,23,42,.08);--radius:18px;
+      --success:#16a34a;--danger:#dc2626;--warning:#ca8a04;--warning-soft:#fef3c7;--shadow:0 12px 32px rgba(15,23,42,.08);--radius:18px;
     }
     *{box-sizing:border-box}
     body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:linear-gradient(180deg,#eff6ff 0,#f8fafc 180px);color:var(--text)}
-    .app{max-width:1120px;margin:0 auto;padding:16px 14px 110px}
+    .app{max-width:1220px;margin:0 auto;padding:16px 14px 110px}
     .hero{background:linear-gradient(135deg,#0f172a,#1d4ed8);color:#fff;border-radius:24px;padding:20px;box-shadow:var(--shadow);margin-bottom:16px}
     .hero-top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;flex-wrap:wrap}
-    .hero h1{margin:0 0 8px;font-size:1.55rem}.hero p{margin:0;max-width:760px;line-height:1.45;opacity:.94}
+    .hero h1{margin:0 0 8px;font-size:1.6rem}
+    .hero p{margin:0;max-width:800px;line-height:1.45;opacity:.94}
     .actions,.header-actions{display:flex;gap:10px;flex-wrap:wrap}
     button,.button-link{border:0;border-radius:14px;padding:12px 16px;font:inherit;font-weight:800;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
     .btn-primary{background:var(--primary);color:#fff}.btn-secondary{background:#e2e8f0;color:#0f172a}.btn-danger{background:#b91c1c;color:#fff}.btn-light{background:rgba(255,255,255,.18);color:#fff;border:1px solid rgba(255,255,255,.25)}
-    .tabs{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:16px 0;position:sticky;top:0;z-index:10;background:rgba(248,250,252,.92);backdrop-filter:blur(10px);padding:10px 0}
+    .tabs{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0;position:sticky;top:0;z-index:10;background:rgba(248,250,252,.92);backdrop-filter:blur(10px);padding:10px 0}
     .tab{border:0;background:#fff;color:var(--muted);padding:12px 10px;border-radius:14px;font-weight:700;box-shadow:var(--shadow);cursor:pointer}
     .tab.active{background:var(--primary);color:#fff}
-    .grid{display:grid;gap:14px}.grid-2{grid-template-columns:1fr}@media(min-width:820px){.grid-2{grid-template-columns:1.08fr .92fr}}
+    .grid{display:grid;gap:14px}
+    .grid-2{grid-template-columns:1fr}
+    .grid-3{grid-template-columns:1fr}
+    @media(min-width:820px){.grid-2{grid-template-columns:1.08fr .92fr}.grid-3{grid-template-columns:repeat(3,1fr)}}
     .card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);border:1px solid rgba(219,234,254,.9)}
     .card h2{margin:0 0 12px;font-size:1.05rem}
-    .row{display:grid;gap:12px;grid-template-columns:1fr}@media(min-width:700px){.row-2{grid-template-columns:repeat(2,1fr)}.row-3{grid-template-columns:repeat(3,1fr)}.row-4{grid-template-columns:repeat(4,1fr)}}
+    .row{display:grid;gap:12px;grid-template-columns:1fr}
+    @media(min-width:700px){.row-2{grid-template-columns:repeat(2,1fr)}.row-3{grid-template-columns:repeat(3,1fr)}.row-4{grid-template-columns:repeat(4,1fr)}.row-5{grid-template-columns:repeat(5,1fr)}}
     label{display:grid;gap:6px;font-size:.9rem;font-weight:700}
     input,select,textarea{width:100%;border:1px solid #cbd5e1;border-radius:14px;padding:12px 14px;font:inherit;background:#fff;color:var(--text)}
     textarea{min-height:88px;resize:vertical}
-    .metrics{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}@media(min-width:820px){.metrics{grid-template-columns:repeat(4,1fr)}}
+    .metrics{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:820px){.metrics{grid-template-columns:repeat(5,1fr)}}
     .metric{border-radius:18px;padding:14px;min-height:96px;display:flex;flex-direction:column;justify-content:space-between}
-    .metric .label{font-size:.86rem;font-weight:700;opacity:.9}.metric .value{font-size:1.18rem;font-weight:800}
-    .metric.prev{background:var(--warning-soft);color:#854d0e}.metric.in{background:#dcfce7;color:#166534}.metric.out{background:#fee2e2;color:#991b1b}.metric.cur{background:#dbeafe;color:#1e3a8a}
+    .metric .label{font-size:.86rem;font-weight:700;opacity:.9}.metric .value{font-size:1.15rem;font-weight:800}
+    .metric.prev{background:var(--warning-soft);color:#854d0e}.metric.in{background:#dcfce7;color:#166534}.metric.out{background:#fee2e2;color:#991b1b}.metric.cur{background:#dbeafe;color:#1e3a8a}.metric.forecast{background:#ede9fe;color:#5b21b6}
     .summary-list,.bar-chart{display:grid;gap:12px}
     .summary-item{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:12px 14px;border-radius:14px;background:#f8fafc;border:1px solid #e2e8f0}
-    .bar-row{display:grid;gap:8px}.bar-meta{display:flex;justify-content:space-between;gap:10px;font-size:.88rem;color:#475569}
-    .bar-track{width:100%;height:14px;background:#e2e8f0;border-radius:999px;overflow:hidden}.bar-fill{height:100%;border-radius:999px}.bar-fill.income{background:#16a34a}.bar-fill.expense{background:#dc2626}
-    .table-wrap{overflow:auto;border-radius:14px} table{width:100%;border-collapse:collapse;font-size:.92rem}
-    th,td{padding:10px 8px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top} th{font-size:.82rem;color:#475569;text-transform:uppercase;letter-spacing:.03em}
+    .table-wrap{overflow:auto;border-radius:14px}
+    table{width:100%;border-collapse:collapse;font-size:.92rem}
+    th,td{padding:10px 8px;border-bottom:1px solid #e5e7eb;text-align:left;vertical-align:top}
+    th{font-size:.82rem;color:#475569;text-transform:uppercase;letter-spacing:.03em}
     .pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:800;white-space:nowrap}
-    .pill.income{background:#dcfce7;color:#166534}.pill.expense{background:#fee2e2;color:#991b1b}.pill.recurring{background:#dbeafe;color:#1e40af}.pill.once{background:#e2e8f0;color:#334155}
+    .pill.income{background:#dcfce7;color:#166534}.pill.expense{background:#fee2e2;color:#991b1b}.pill.recurring{background:#dbeafe;color:#1e40af}.pill.once{background:#e2e8f0;color:#334155}.pill.future{background:#ede9fe;color:#5b21b6}
     .small{font-size:.82rem}.muted{color:#475569}.hidden{display:none!important}
     .switch{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px dashed #cbd5e1;border-radius:14px;background:#f8fafc}
     .status{padding:10px 12px;border-radius:14px;background:#eff6ff;border:1px solid #bfdbfe;color:#1e3a8a;font-size:.9rem}
     .status.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
     .tag{background:#e2e8f0;color:#334155;border-radius:999px;padding:6px 10px;font-size:.78rem;font-weight:700}
+    .chart-card canvas{width:100%;height:320px}
+    .insight{padding:12px 14px;border-left:4px solid #1d4ed8;background:#eff6ff;border-radius:12px;color:#1e3a8a}
     .modal-backdrop{position:fixed;inset:0;background:rgba(15,23,42,.58);display:none;align-items:center;justify-content:center;z-index:1000;padding:16px}
     .modal-backdrop.open{display:flex}.modal{width:min(760px,100%);background:#fff;border-radius:24px;box-shadow:0 22px 60px rgba(15,23,42,.28);padding:20px;max-height:92vh;overflow:auto}
-    .modal.small{width:min(560px,100%)}
-    .modal h3{margin:0 0 12px}
-    .manual-grid{display:grid;gap:12px}
-    .manual-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:14px}
-    .manual-box h4{margin:0 0 8px;color:#1d4ed8}
-    .manual-box ul{margin:0;padding-left:18px;line-height:1.5;color:#334155}
+    .manual-grid{display:grid;gap:12px}.manual-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:16px;padding:14px}
+    .manual-box h4{margin:0 0 8px;color:#1d4ed8}.manual-box ul{margin:0;padding-left:18px;line-height:1.5;color:#334155}
   </style>
 </head>
 <body>
@@ -65,13 +69,12 @@
     <div class="hero">
       <div class="hero-top">
         <div>
-          <h1>Orçamento Doméstico Cloud</h1>
-          <p>PWA profissional, instalável no iPhone, com autenticação, recuperação de senha, persistência local, sincronização com nuvem e manual integrado.</p>
+          <h1>Orçamento Doméstico BI + Previsões</h1>
+          <p>PWA profissional com dashboard estilo BI, gráficos diversos, insights automáticos, lançamentos futuros, fluxo de caixa projetado, login e sincronização com Supabase.</p>
         </div>
         <div class="header-actions">
           <button class="btn-light" onclick="openAuthModal()">🔐 Conta</button>
           <button class="btn-light" onclick="openManual()">📘 Manual</button>
-          <a class="button-link btn-light" href="manual_orcamento_domestico_cloud.pdf" target="_blank">📄 PDF</a>
         </div>
       </div>
     </div>
@@ -80,6 +83,7 @@
 
     <div class="tabs">
       <button class="tab active" data-tab="dashboard">Painel</button>
+      <button class="tab" data-tab="bi">Dashboard BI</button>
       <button class="tab" data-tab="cadastro">Lançamentos</button>
       <button class="tab" data-tab="fluxo">Fluxo de Caixa</button>
       <button class="tab" data-tab="relatorios">Relatórios</button>
@@ -90,16 +94,47 @@
       <div class="grid">
         <div class="card">
           <h2>Filtro do período</h2>
-          <div class="row row-3">
+          <div class="row row-5">
             <label>Data inicial<input type="date" id="filterStart" /></label>
             <label>Data final<input type="date" id="filterEnd" /></label>
             <label>Descrição ou categoria<input type="text" id="filterSearch" placeholder="Ex.: aluguel, mercado, salário" /></label>
+            <label>Visão do fluxo
+              <select id="flowMode">
+                <option value="realized">Somente realizados/pendentes no período</option>
+                <option value="forecast">Incluir previsões e futuros</option>
+              </select>
+            </label>
+            <label>Horizonte de projeção
+              <select id="forecastMonths">
+                <option value="1">1 mês</option>
+                <option value="3" selected>3 meses</option>
+                <option value="6">6 meses</option>
+                <option value="12">12 meses</option>
+              </select>
+            </label>
           </div>
         </div>
         <div class="metrics" id="metrics"></div>
         <div class="grid grid-2">
           <div class="card"><h2>Resumo por categoria</h2><div id="categorySummary" class="summary-list"></div></div>
-          <div class="card"><h2>Gráfico do período</h2><div id="periodChart" class="bar-chart"></div></div>
+          <div class="card"><h2>Insights automáticos</h2><div id="insightsList" class="summary-list"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="bi" class="tab-panel hidden">
+      <div class="grid">
+        <div class="grid grid-2">
+          <div class="card chart-card"><h2>Evolução do saldo</h2><canvas id="chartBalance"></canvas></div>
+          <div class="card chart-card"><h2>Receitas x Despesas por mês</h2><canvas id="chartCompare"></canvas></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="card chart-card"><h2>Despesas por categoria</h2><canvas id="chartExpenseCategory"></canvas></div>
+          <div class="card chart-card"><h2>Receitas por categoria</h2><canvas id="chartIncomeCategory"></canvas></div>
+        </div>
+        <div class="grid grid-2">
+          <div class="card chart-card"><h2>Fluxo projetado</h2><canvas id="chartForecast"></canvas></div>
+          <div class="card"><h2>Resumo executivo</h2><div id="executiveSummary" class="summary-list"></div></div>
         </div>
       </div>
     </section>
@@ -120,11 +155,24 @@
                 <datalist id="categoryOptions"></datalist>
               </label>
             </div>
-            <div class="row row-4">
+            <div class="row row-5">
               <label>Valor<input type="number" step="0.01" id="amount" required /></label>
-              <label>Status<select id="status"><option value="previsto">Previsto</option><option value="realizado">Realizado</option><option value="pendente">Pendente</option></select></label>
+              <label>Status
+                <select id="status">
+                  <option value="previsto">Previsto</option>
+                  <option value="realizado">Realizado</option>
+                  <option value="pendente">Pendente</option>
+                  <option value="atrasado">Atrasado</option>
+                </select>
+              </label>
               <label>Conta / origem / destino<input type="text" id="account" /></label>
               <label>Identificação<input type="text" id="identifier" /></label>
+              <label>Tipo temporal
+                <select id="timelineType">
+                  <option value="normal">Lançamento normal</option>
+                  <option value="forecast">Lançamento futuro / previsão</option>
+                </select>
+              </label>
             </div>
             <label>Observações<textarea id="notes"></textarea></label>
             <div class="switch">
@@ -157,7 +205,7 @@
           <h2>Lançamentos cadastrados</h2>
           <div class="table-wrap">
             <table>
-              <thead><tr><th>Data</th><th>Descrição</th><th>Valor</th><th>Tipo</th><th>Recorrência</th><th>Ações</th></tr></thead>
+              <thead><tr><th>Data</th><th>Descrição</th><th>Valor</th><th>Tipo</th><th>Recorrência</th><th>Temporalidade</th><th>Ações</th></tr></thead>
               <tbody id="entriesTable"></tbody>
             </table>
           </div>
@@ -167,10 +215,10 @@
 
     <section id="fluxo" class="tab-panel hidden">
       <div class="card">
-        <h2>Fluxo de caixa por período</h2>
+        <h2>Fluxo de caixa detalhado</h2>
         <div class="table-wrap">
           <table>
-            <thead><tr><th>Data</th><th>Evento</th><th>Categoria</th><th>Identificação</th><th>Status</th><th>Tipo</th><th>Valor</th><th>Saldo acumulado</th><th>Ações</th></tr></thead>
+            <thead><tr><th>Data</th><th>Evento</th><th>Categoria</th><th>Identificação</th><th>Status</th><th>Tipo</th><th>Temporalidade</th><th>Valor</th><th>Saldo acumulado</th><th>Ações</th></tr></thead>
             <tbody id="cashFlowTable"></tbody>
           </table>
         </div>
@@ -209,7 +257,7 @@
   </div>
 
   <div id="authModal" class="modal-backdrop" onclick="closeAuthModal(event)">
-    <div class="modal small" onclick="event.stopPropagation()">
+    <div class="modal" onclick="event.stopPropagation()">
       <h3>Login e backup na nuvem</h3>
       <div class="row row-2">
         <label>Nome<input type="text" id="authName" placeholder="Opcional no cadastro" /></label>
@@ -228,65 +276,18 @@
 
   <div id="manualModal" class="modal-backdrop" onclick="closeManual(event)">
     <div class="modal" onclick="event.stopPropagation()">
-      <h3>Manual integrado</h3>
+      <h3>Manual rápido</h3>
       <div class="manual-grid">
-        <div class="manual-box">
-          <h4>1. Configuração inicial</h4>
-          <ul>
-            <li>Preencha o arquivo <b>supabase-config.js</b> com a URL e a anon key do seu projeto.</li>
-            <li>Execute o conteúdo de <b>supabase_schema.sql</b> no SQL Editor do Supabase.</li>
-            <li>Publique a pasta no GitHub Pages.</li>
-          </ul>
-        </div>
-        <div class="manual-box">
-          <h4>2. Conta</h4>
-          <ul>
-            <li>Use <b>Criar conta</b> para registrar usuário.</li>
-            <li>Use <b>Entrar</b> para acessar seus dados na nuvem.</li>
-            <li>Use <b>Recuperar senha</b> para redefinir a senha por e-mail.</li>
-          </ul>
-        </div>
-        <div class="manual-box">
-          <h4>3. Lançamentos</h4>
-          <ul>
-            <li>Cadastre receitas ou despesas com descrição, categoria, valor e data.</li>
-            <li>Ative recorrência para parcelas ou lançamentos permanentes.</li>
-            <li>Edite ou exclua lançamentos a qualquer momento.</li>
-          </ul>
-        </div>
-        <div class="manual-box">
-          <h4>4. Fluxo e relatórios</h4>
-          <ul>
-            <li>Use o filtro por período para recalcular o painel, o gráfico e os relatórios.</li>
-            <li>O fluxo de caixa mostra o saldo acumulado após cada evento.</li>
-          </ul>
-        </div>
-        <div class="manual-box">
-          <h4>5. Sincronização</h4>
-          <ul>
-            <li>O app guarda dados localmente e sincroniza com a nuvem após o login.</li>
-            <li>Use <b>Sincronizar agora</b> para enviar e baixar dados.</li>
-            <li>Quando estiver sem internet, continue usando normalmente; a sincronização pode ser feita depois.</li>
-          </ul>
-        </div>
-        <div class="manual-box">
-          <h4>6. Backup</h4>
-          <ul>
-            <li>Exporte backup em JSON para guardar uma cópia externa.</li>
-            <li>Importe o JSON para restaurar os dados.</li>
-            <li>O manual completo também está disponível em PDF.</li>
-          </ul>
-        </div>
+        <div class="manual-box"><h4>Dashboard BI</h4><ul><li>Use a aba Dashboard BI para ver gráficos de saldo, categorias, comparativo mensal e projeções.</li><li>Os gráficos seguem o filtro do período.</li></ul></div>
+        <div class="manual-box"><h4>Previsões</h4><ul><li>No cadastro, selecione <b>Lançamento futuro / previsão</b>.</li><li>Esses eventos entram no fluxo projetado e nos insights.</li></ul></div>
+        <div class="manual-box"><h4>Sincronização</h4><ul><li>O app guarda localmente e sincroniza com Supabase após login.</li><li>Use <b>Sincronizar agora</b> quando quiser forçar atualização.</li></ul></div>
+        <div class="manual-box"><h4>Recorrências</h4><ul><li>Use parcelas para compras parceladas.</li><li>Use permanente para salários, aluguéis ou mensalidades.</li></ul></div>
       </div>
-      <div class="actions" style="margin-top:14px">
-        <a class="button-link btn-secondary" href="manual_orcamento_domestico_cloud.pdf" target="_blank">Abrir PDF</a>
-        <button class="btn-primary" onclick="closeManual()">Fechar</button>
-      </div>
+      <div class="actions" style="margin-top:14px"><button class="btn-primary" onclick="closeManual()">Fechar</button></div>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="./supabase-config.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="./supabase-config.js"></script>
   <script>
@@ -296,75 +297,40 @@
         !String(window.APP_CONFIG.supabaseAnonKey).includes('SUA-CHAVE')) {
       supabase = window.supabase.createClient(window.APP_CONFIG.supabaseUrl, window.APP_CONFIG.supabaseAnonKey);
     }
-
-    function nowIso() { return new Date().toISOString(); }
-    function updateCurrencyFormatter() {
-      currency = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: state.settings.currency_code || 'BRL' });
-    }
-    function escapeHtml(str) {
-      return String(str || '')
-        .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
-        .replaceAll('"', '&quot;').replaceAll("'", '&#039;');
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('./sw.js'));
     }
 
-    function openAuthModal(){ document.getElementById('authModal').classList.add('open'); }
-    function closeAuthModal(e){ if(!e || e.target.id==='authModal') document.getElementById('authModal').classList.remove('open'); }
-    function openManual(){ document.getElementById('manualModal').classList.add('open'); }
-    function closeManual(e){ if(!e || e.target.id==='manualModal') document.getElementById('manualModal').classList.remove('open'); }
+    const STORAGE_KEY = 'orcamento_domestico_bi_forecast_v1';
+    const DEFAULT_CATEGORIES = [
+      { id: 'cat-moradia', name: 'Moradia', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-alimentacao', name: 'Alimentação', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-transporte', name: 'Transporte', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-saude', name: 'Saúde', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-educacao', name: 'Educação', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-lazer', name: 'Lazer', type: 'expense', updated_at: new Date().toISOString() },
+      { id: 'cat-salario', name: 'Salário', type: 'income', updated_at: new Date().toISOString() },
+      { id: 'cat-freelance', name: 'Freelance', type: 'income', updated_at: new Date().toISOString() },
+      { id: 'cat-investimentos', name: 'Investimentos', type: 'income', updated_at: new Date().toISOString() },
+      { id: 'cat-outros', name: 'Outros', type: 'both', updated_at: new Date().toISOString() }
+    ];
+    const state = {
+      entries: [], categories: [], settings: { id:'settings-default', initial_balance:0, currency_code:'BRL', theme_name:'light', updated_at:null },
+      excludedOccurrences: {}, filterStart:'', filterEnd:'', filterSearch:'', editingId:null, user:null, lastSyncAt:null, syncInProgress:false
+    };
+    const today = new Date();
+    let currency = new Intl.NumberFormat('pt-BR', { style:'currency', currency:'BRL' });
+    let charts = {};
 
-    function setAuthMessage(msg, warn = false) {
-      const el = document.getElementById('authMessage');
-      el.className = warn ? 'status warn' : 'status';
-      el.innerHTML = msg;
-    }
+    const pad = n => String(n).padStart(2,'0');
+    const formatDateInput = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+    const formatDateBR = date => { const [y,m,d] = date.split('-'); return `${d}/${m}/${y}`; };
+    const startOfMonth = d => new Date(d.getFullYear(), d.getMonth(), 1);
+    const endOfMonth = d => new Date(d.getFullYear(), d.getMonth()+1, 0);
+    const nowIso = () => new Date().toISOString();
 
-    function updateSyncStatus(extra = '') {
-      const el = document.getElementById('syncStatus');
-      if (!supabase) {
-        el.className = 'status warn';
-        el.innerHTML = 'Modo atual: <b>local</b>. Configure o Supabase em <b>supabase-config.js</b> para ativar login e nuvem.';
-        return;
-      }
-      if (!state.user) {
-        el.className = 'status';
-        el.innerHTML = 'Supabase configurado. Faça <b>login</b> para ativar backup e sincronização na nuvem.' + (extra ? ' ' + extra : '');
-        return;
-      }
-      el.className = 'status';
-      el.innerHTML = `Conectado como <b>${escapeHtml(state.user.email || '')}</b>. Última sincronização: <b>${state.lastSyncAt || 'ainda não realizada'}</b>.` + (extra ? ' ' + extra : '');
-    }
-
-    function saveLocalState() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({
-        entries: state.entries,
-        categories: state.categories,
-        settings: state.settings,
-        excludedOccurrences: state.excludedOccurrences,
-        lastSyncAt: state.lastSyncAt
-      }));
-    }
-
-    function loadLocalState() {
-      try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (raw) {
-          const parsed = JSON.parse(raw);
-          state.entries = Array.isArray(parsed.entries) ? parsed.entries : [];
-          state.categories = Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : DEFAULT_CATEGORIES.slice();
-          state.settings = parsed.settings && typeof parsed.settings === 'object' ? { ...state.settings, ...parsed.settings } : state.settings;
-          state.excludedOccurrences = parsed.excludedOccurrences && typeof parsed.excludedOccurrences === 'object' ? parsed.excludedOccurrences : {};
-          state.lastSyncAt = parsed.lastSyncAt || null;
-        } else {
-          state.categories = DEFAULT_CATEGORIES.slice();
-        }
-      } catch (e) {
-        state.categories = DEFAULT_CATEGORIES.slice();
-      }
-      state.filterStart = formatDateInput(startOfMonth(today));
-      state.filterEnd = formatDateInput(endOfMonth(today));
-      updateCurrencyFormatter();
-    }
-
+    function updateCurrencyFormatter(){ currency = new Intl.NumberFormat('pt-BR', { style:'currency', currency: state.settings.currency_code || 'BRL' }); }
+    function escapeHtml(str){ return String(str||'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;').replaceAll("'",'&#039;'); }
     function uid(){ return Math.random().toString(36).slice(2) + Date.now().toString(36); }
     function addDays(dateStr, days){ const d=new Date(dateStr+'T00:00:00'); d.setDate(d.getDate()+days); return formatDateInput(d); }
     function addMonths(dateStr, months){ const d=new Date(dateStr+'T00:00:00'); const day=d.getDate(); d.setMonth(d.getMonth()+months); if(d.getDate()<day)d.setDate(0); return formatDateInput(d); }
@@ -381,35 +347,91 @@
       return addMonths(dateStr,1);
     }
 
+    function openAuthModal(){ document.getElementById('authModal').classList.add('open'); }
+    function closeAuthModal(e){ if(!e || e.target.id==='authModal') document.getElementById('authModal').classList.remove('open'); }
+    function openManual(){ document.getElementById('manualModal').classList.add('open'); }
+    function closeManual(e){ if(!e || e.target.id==='manualModal') document.getElementById('manualModal').classList.remove('open'); }
+
+    function setAuthMessage(msg, warn=false){
+      const el = document.getElementById('authMessage');
+      el.className = warn ? 'status warn' : 'status';
+      el.innerHTML = msg;
+    }
+    function updateSyncStatus(extra=''){
+      const el = document.getElementById('syncStatus');
+      if(!supabase){ el.className='status warn'; el.innerHTML='Modo atual: <b>local</b>. Configure o Supabase em <b>supabase-config.js</b> para ativar login e nuvem.'; return; }
+      if(!state.user){ el.className='status'; el.innerHTML='Supabase configurado. Faça <b>login</b> para ativar backup e sincronização na nuvem.' + (extra ? ' '+extra : ''); return; }
+      el.className='status';
+      el.innerHTML=`Conectado como <b>${escapeHtml(state.user.email||'')}</b>. Última sincronização: <b>${state.lastSyncAt || 'ainda não realizada'}</b>.` + (extra ? ' '+extra : '');
+    }
+
+    function saveLocalState(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        entries: state.entries, categories: state.categories, settings: state.settings,
+        excludedOccurrences: state.excludedOccurrences, lastSyncAt: state.lastSyncAt
+      }));
+    }
+    function loadLocalState(){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if(raw){
+          const parsed = JSON.parse(raw);
+          state.entries = Array.isArray(parsed.entries) ? parsed.entries : [];
+          state.categories = Array.isArray(parsed.categories) && parsed.categories.length ? parsed.categories : DEFAULT_CATEGORIES.slice();
+          state.settings = parsed.settings && typeof parsed.settings === 'object' ? { ...state.settings, ...parsed.settings } : state.settings;
+          state.excludedOccurrences = parsed.excludedOccurrences && typeof parsed.excludedOccurrences === 'object' ? parsed.excludedOccurrences : {};
+          state.lastSyncAt = parsed.lastSyncAt || null;
+        } else {
+          state.categories = DEFAULT_CATEGORIES.slice();
+        }
+      } catch(e){ state.categories = DEFAULT_CATEGORIES.slice(); }
+      state.filterStart = formatDateInput(startOfMonth(today));
+      state.filterEnd = formatDateInput(endOfMonth(today));
+      updateCurrencyFormatter();
+    }
+
     function generateOccurrences(entry){
       if(!entry.isRecurring) return [entry];
-      const items=[]; const limit = entry.recurringMode === 'permanent' ? 240 : Number(entry.installments || 1);
-      let current = entry.date;
+      const items=[]; const limit = entry.recurringMode==='permanent' ? 240 : Number(entry.installments || 1);
+      let current=entry.date;
       for(let i=0;i<limit;i++){
         const occurrenceKey = `${entry.id}__${current}__${i+1}`;
         if(!state.excludedOccurrences[occurrenceKey]){
-          items.push({...entry,date:current,occurrenceNumber:i+1,occurrenceKey,
-            occurrenceLabel: entry.recurringMode === 'installments' ? `${i+1}/${entry.installments}` : `recorrente #${i+1}`});
+          items.push({...entry, date:current, occurrenceNumber:i+1, occurrenceKey,
+            occurrenceLabel: entry.recurringMode==='installments' ? `${i+1}/${entry.installments}` : `recorrente #${i+1}`});
         }
         current = nextDate(current, entry.frequency);
       }
       return items;
     }
-
     function getExpandedEntries(){ return state.entries.flatMap(generateOccurrences).sort((a,b)=>a.date.localeCompare(b.date)); }
     function matchesSearch(entry){
       const term = state.filterSearch.trim().toLowerCase();
       if(!term) return true;
       return [entry.description,entry.category,entry.account,entry.identifier,entry.notes,entry.status].filter(Boolean).join(' ').toLowerCase().includes(term);
     }
-    function getEntriesInPeriod(){ return getExpandedEntries().filter(e=>e.date>=state.filterStart && e.date<=state.filterEnd && matchesSearch(e)); }
-    function getBalanceBeforePeriod(){ return Number(state.settings.initial_balance || 0) + getExpandedEntries().filter(e=>e.date<state.filterStart && matchesSearch(e)).reduce((a,e)=>a+(e.type==='income'?Number(e.amount):-Number(e.amount)),0); }
+    function getFilteredEntries(includeForecast = false){
+      return getExpandedEntries().filter(e => e.date >= state.filterStart && e.date <= state.filterEnd && matchesSearch(e) && (includeForecast || e.timeline_type !== 'forecast'));
+    }
+    function getForecastEntries(){
+      const months = Number(document.getElementById('forecastMonths')?.value || 3);
+      const end = addMonths(state.filterEnd, months);
+      return getExpandedEntries().filter(e => e.date >= state.filterStart && e.date <= end && matchesSearch(e));
+    }
+    function getBalanceBeforePeriod(includeForecast=false){
+      return Number(state.settings.initial_balance || 0) + getExpandedEntries()
+        .filter(e => e.date < state.filterStart && matchesSearch(e) && (includeForecast || e.timeline_type !== 'forecast'))
+        .reduce((a,e)=>a+(e.type==='income'?Number(e.amount):-Number(e.amount)),0);
+    }
     function calculateMetrics(){
-      const entries=getEntriesInPeriod();
-      const previousBalance=getBalanceBeforePeriod();
-      const totalIncome=entries.filter(e=>e.type==='income').reduce((s,e)=>s+Number(e.amount),0);
-      const totalExpense=entries.filter(e=>e.type==='expense').reduce((s,e)=>s+Number(e.amount),0);
-      return { previousBalance, totalIncome, totalExpense, currentBalance: previousBalance + totalIncome - totalExpense, entries };
+      const includeForecast = document.getElementById('flowMode')?.value === 'forecast';
+      const entries = includeForecast ? getFilteredEntries(true) : getFilteredEntries(false);
+      const previousBalance = getBalanceBeforePeriod(includeForecast);
+      const totalIncome = entries.filter(e=>e.type==='income').reduce((s,e)=>s+Number(e.amount),0);
+      const totalExpense = entries.filter(e=>e.type==='expense').reduce((s,e)=>s+Number(e.amount),0);
+      const forecastEntries = getForecastEntries();
+      const futureNet = forecastEntries.filter(e => e.date > state.filterEnd).reduce((a,e)=>a+(e.type==='income'?Number(e.amount):-Number(e.amount)),0);
+      return { previousBalance, totalIncome, totalExpense, currentBalance: previousBalance + totalIncome - totalExpense, futureProjectedBalance: previousBalance + totalIncome - totalExpense + futureNet, entries, forecastEntries };
     }
     function labelFrequency(freq){ return ({daily:'Diária',weekly:'Semanal',biweekly:'Quinzenal',monthly:'Mensal',bimonthly:'Bimestral',quarterly:'Trimestral',semiannual:'Semestral',yearly:'Anual'})[freq] || freq; }
     function recurrenceText(entry){
@@ -418,137 +440,243 @@
       return `<span class="pill recurring">${labelFrequency(entry.frequency)} • ${entry.installments} parcelas</span>`;
     }
 
-    function renderMetrics() {
-      const { previousBalance, totalIncome, totalExpense, currentBalance } = calculateMetrics();
+    function renderMetrics(){
+      const { previousBalance, totalIncome, totalExpense, currentBalance, futureProjectedBalance } = calculateMetrics();
       document.getElementById('metrics').innerHTML = `
         <div class="metric prev"><div class="label">Saldo anterior</div><div class="value">${currency.format(previousBalance)}</div></div>
         <div class="metric in"><div class="label">Receitas do período</div><div class="value">${currency.format(totalIncome)}</div></div>
         <div class="metric out"><div class="label">Despesas do período</div><div class="value">${currency.format(totalExpense)}</div></div>
         <div class="metric cur"><div class="label">Saldo atual</div><div class="value">${currency.format(currentBalance)}</div></div>
+        <div class="metric forecast"><div class="label">Saldo projetado</div><div class="value">${currency.format(futureProjectedBalance)}</div></div>
       `;
     }
-    function renderCategoryOptions() {
+
+    function renderCategoryOptions(){
       document.getElementById('categoryOptions').innerHTML = state.categories.map(cat => `<option value="${escapeHtml(cat.name)}"></option>`).join('');
     }
-    function renderCategoryList() {
+    function renderCategoryList(){
       const list = document.getElementById('categoryList');
-      if (!state.categories.length) {
-        list.innerHTML = '<div class="summary-item"><span class="muted">Nenhuma categoria cadastrada.</span></div>';
-        return;
-      }
-      list.innerHTML = state.categories.sort((a,b) => a.name.localeCompare(b.name)).map(cat => `
-        <div class="summary-item">
-          <div><b>${escapeHtml(cat.name)}</b><div class="small muted">Tipo: ${escapeHtml(cat.type || 'both')}</div></div>
-          <div class="actions"><button class="btn-danger" onclick="removeCategory('${cat.id}')">Excluir</button></div>
-        </div>`).join('');
+      if(!state.categories.length){ list.innerHTML='<div class="summary-item"><span class="muted">Nenhuma categoria cadastrada.</span></div>'; return; }
+      list.innerHTML = state.categories.sort((a,b)=>a.name.localeCompare(b.name)).map(cat => `<div class="summary-item"><div><b>${escapeHtml(cat.name)}</b><div class="small muted">Tipo: ${escapeHtml(cat.type || 'both')}</div></div><div class="actions"><button class="btn-danger" onclick="removeCategory('${cat.id}')">Excluir</button></div></div>`).join('');
     }
-    function renderEntriesTable() {
+    function renderEntriesTable(){
       const tbody = document.getElementById('entriesTable');
-      if (!state.entries.length) {
-        tbody.innerHTML = '<tr><td colspan="6" class="muted">Nenhum lançamento cadastrado.</td></tr>';
-        return;
-      }
-      tbody.innerHTML = state.entries.sort((a,b) => a.date.localeCompare(b.date)).map(entry => `
+      if(!state.entries.length){ tbody.innerHTML='<tr><td colspan="7" class="muted">Nenhum lançamento cadastrado.</td></tr>'; return; }
+      tbody.innerHTML = state.entries.sort((a,b)=>a.date.localeCompare(b.date)).map(entry => `
         <tr>
           <td>${formatDateBR(entry.date)}</td>
           <td><strong>${escapeHtml(entry.description)}</strong><br><span class="small muted">${escapeHtml(entry.category)} • ${escapeHtml(entry.status)}</span></td>
           <td>${currency.format(Number(entry.amount))}</td>
           <td><span class="pill ${entry.type}">${entry.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
           <td>${recurrenceText(entry)}</td>
+          <td>${entry.timeline_type === 'forecast' ? '<span class="pill future">Previsão</span>' : '<span class="pill once">Normal</span>'}</td>
           <td><div class="actions"><button class="btn-secondary" onclick="editEntry('${entry.id}')">Editar</button><button class="btn-danger" onclick="removeEntry('${entry.id}')">Excluir</button></div></td>
         </tr>`).join('');
     }
-    function renderCategorySummary() {
-      const entries = getEntriesInPeriod();
+    function renderCategorySummary(){
+      const entries = getFilteredEntries(document.getElementById('flowMode')?.value === 'forecast');
       const map = {};
       entries.forEach(entry => {
         const key = `${entry.type}:${entry.category}`;
-        if (!map[key]) map[key] = { category: entry.category, type: entry.type, total: 0, count: 0 };
+        if(!map[key]) map[key] = { category:entry.category, type:entry.type, total:0, count:0 };
         map[key].total += Number(entry.amount); map[key].count += 1;
       });
-      const items = Object.values(map).sort((a,b) => b.total - a.total);
+      const items = Object.values(map).sort((a,b)=>b.total-a.total);
       const container = document.getElementById('categorySummary');
-      if (!items.length) {
-        container.innerHTML = '<div class="summary-item"><span class="muted">Sem dados para o período.</span></div>'; return;
-      }
+      if(!items.length){ container.innerHTML='<div class="summary-item"><span class="muted">Sem dados para o período.</span></div>'; return; }
       container.innerHTML = items.map(item => `<div class="summary-item"><div><strong>${escapeHtml(item.category)}</strong><br><span class="small muted">${item.type === 'income' ? 'Receita' : 'Despesa'} • ${item.count} evento(s)</span></div><div class="tag">${currency.format(item.total)}</div></div>`).join('');
     }
-    function renderPeriodChart() {
-      const entries = getEntriesInPeriod(); const grouped = {};
-      entries.forEach(entry => {
-        const month = entry.date.slice(0,7);
-        if (!grouped[month]) grouped[month] = { income: 0, expense: 0 };
-        grouped[month][entry.type] += Number(entry.amount);
+    function renderInsights(){
+      const { previousBalance, totalIncome, totalExpense, currentBalance, futureProjectedBalance, entries } = calculateMetrics();
+      const insights = [];
+      if(totalExpense > totalIncome) insights.push(`As despesas do período superam as receitas em ${currency.format(totalExpense - totalIncome)}.`);
+      else if(totalIncome > totalExpense) insights.push(`As receitas do período superam as despesas em ${currency.format(totalIncome - totalExpense)}.`);
+      if(currentBalance < 0) insights.push(`O saldo atual está negativo em ${currency.format(Math.abs(currentBalance))}.`);
+      if(futureProjectedBalance < currentBalance) insights.push(`A projeção futura indica queda do saldo para ${currency.format(futureProjectedBalance)}.`);
+      const expenseByCat = {};
+      entries.filter(e=>e.type==='expense').forEach(e => expenseByCat[e.category]=(expenseByCat[e.category]||0)+Number(e.amount));
+      const topExpenseCat = Object.entries(expenseByCat).sort((a,b)=>b[1]-a[1])[0];
+      if(topExpenseCat) insights.push(`A maior pressão de gastos está em ${topExpenseCat[0]} com ${currency.format(topExpenseCat[1])}.`);
+      const futureCount = getForecastEntries().filter(e=>e.timeline_type==='forecast' || e.date > state.filterEnd).length;
+      if(futureCount) insights.push(`Existem ${futureCount} evento(s) futuro(s) ou de previsão considerados na projeção.`);
+      if(!insights.length) insights.push('Nenhum alerta relevante no período. O comportamento financeiro está equilibrado com os filtros atuais.');
+      document.getElementById('insightsList').innerHTML = insights.map(t => `<div class="insight">${escapeHtml(t)}</div>`).join('');
+    }
+    function renderExecutiveSummary(){
+      const { entries, futureProjectedBalance } = calculateMetrics();
+      const realized = entries.filter(e=>e.status==='realizado').length;
+      const planned = entries.filter(e=>e.timeline_type==='forecast' || e.status==='previsto').length;
+      const recurring = state.entries.filter(e=>e.isRecurring).length;
+      const upcoming = getForecastEntries().filter(e=>e.date > state.filterEnd).slice(0,5);
+      document.getElementById('executiveSummary').innerHTML = `
+        <div class="summary-item"><span>Eventos realizados no período</span><strong>${realized}</strong></div>
+        <div class="summary-item"><span>Eventos previstos / futuros</span><strong>${planned}</strong></div>
+        <div class="summary-item"><span>Lançamentos recorrentes cadastrados</span><strong>${recurring}</strong></div>
+        <div class="summary-item"><span>Saldo projetado</span><strong>${currency.format(futureProjectedBalance)}</strong></div>
+        ${upcoming.length ? upcoming.map(e => `<div class="summary-item"><div><strong>${escapeHtml(e.description)}</strong><div class="small muted">${formatDateBR(e.date)} • ${escapeHtml(e.category)}</div></div><span class="tag">${currency.format(Number(e.amount))}</span></div>`).join('') : '<div class="summary-item"><span class="muted">Sem eventos futuros dentro do horizonte selecionado.</span></div>'}
+      `;
+    }
+
+    function destroyCharts(){ Object.values(charts).forEach(c => c && c.destroy && c.destroy()); charts = {}; }
+    function makeChart(id, config){
+      const ctx = document.getElementById(id);
+      if(!ctx) return;
+      charts[id] = new Chart(ctx, config);
+    }
+    function groupByMonth(entries){
+      const grouped = {};
+      entries.forEach(e => {
+        const key = e.date.slice(0,7);
+        if(!grouped[key]) grouped[key] = { income:0, expense:0, net:0 };
+        if(e.type==='income'){ grouped[key].income += Number(e.amount); grouped[key].net += Number(e.amount); }
+        else { grouped[key].expense += Number(e.amount); grouped[key].net -= Number(e.amount); }
       });
-      const rows = Object.entries(grouped).sort(([a],[b]) => a.localeCompare(b));
-      const maxValue = Math.max(1, ...rows.flatMap(([,v]) => [v.income, v.expense]));
-      const chart = document.getElementById('periodChart');
-      if (!rows.length) { chart.innerHTML = '<div class="summary-item"><span class="muted">Sem dados para gerar gráfico.</span></div>'; return; }
-      chart.innerHTML = rows.map(([month, values]) => {
-        const [year, m] = month.split('-');
-        return `<div class="bar-row"><div class="bar-meta"><strong>${m}/${year}</strong><span>Receitas ${currency.format(values.income)} • Despesas ${currency.format(values.expense)}</span></div><div class="bar-track"><div class="bar-fill income" style="width:${(values.income / maxValue) * 100}%"></div></div><div class="bar-track"><div class="bar-fill expense" style="width:${(values.expense / maxValue) * 100}%"></div></div></div>`;
-      }).join('');
+      return grouped;
     }
-    function renderCashFlow() {
+    function renderCharts(){
+      destroyCharts();
+      const includeForecast = document.getElementById('flowMode')?.value === 'forecast';
+      const entries = includeForecast ? getFilteredEntries(true) : getFilteredEntries(false);
+      const forecastEntries = getForecastEntries();
+      const grouped = groupByMonth(entries);
+      const labels = Object.keys(grouped).sort();
+      const incomes = labels.map(k => grouped[k].income);
+      const expenses = labels.map(k => grouped[k].expense);
+
+      // balance line
+      let running = getBalanceBeforePeriod(includeForecast);
+      const ordered = [...entries].sort((a,b) => a.date.localeCompare(b.date));
+      const balLabels = [];
+      const balValues = [];
+      ordered.forEach(e => {
+        running += e.type==='income' ? Number(e.amount) : -Number(e.amount);
+        balLabels.push(formatDateBR(e.date));
+        balValues.push(running);
+      });
+      if(!balLabels.length){ balLabels.push('Sem dados'); balValues.push(getBalanceBeforePeriod(includeForecast)); }
+
+      makeChart('chartBalance', {
+        type:'line',
+        data:{ labels: balLabels, datasets:[{ label:'Saldo acumulado', data: balValues, borderColor:'#1d4ed8', backgroundColor:'rgba(29,78,216,.15)', fill:true, tension:.25 }]},
+        options:{ responsive:true, maintainAspectRatio:false }
+      });
+
+      makeChart('chartCompare', {
+        type:'bar',
+        data:{ labels, datasets:[
+          { label:'Receitas', data: incomes, backgroundColor:'rgba(22,163,74,.75)' },
+          { label:'Despesas', data: expenses, backgroundColor:'rgba(220,38,38,.75)' }
+        ]},
+        options:{ responsive:true, maintainAspectRatio:false }
+      });
+
+      const expenseMap = {};
+      entries.filter(e=>e.type==='expense').forEach(e => expenseMap[e.category]=(expenseMap[e.category]||0)+Number(e.amount));
+      const incomeMap = {};
+      entries.filter(e=>e.type==='income').forEach(e => incomeMap[e.category]=(incomeMap[e.category]||0)+Number(e.amount));
+
+      makeChart('chartExpenseCategory', {
+        type:'doughnut',
+        data:{ labels:Object.keys(expenseMap), datasets:[{ data:Object.values(expenseMap) }]},
+        options:{ responsive:true, maintainAspectRatio:false }
+      });
+      makeChart('chartIncomeCategory', {
+        type:'doughnut',
+        data:{ labels:Object.keys(incomeMap), datasets:[{ data:Object.values(incomeMap) }]},
+        options:{ responsive:true, maintainAspectRatio:false }
+      });
+
+      const forecastGrouped = groupByMonth(forecastEntries);
+      const forecastLabels = Object.keys(forecastGrouped).sort();
+      let forecastRunning = getBalanceBeforePeriod(true);
+      const forecastSeries = forecastLabels.map(k => {
+        forecastRunning += forecastGrouped[k].income - forecastGrouped[k].expense;
+        return forecastRunning;
+      });
+      if(!forecastLabels.length){ forecastLabels.push('Sem projeção'); forecastSeries.push(getBalanceBeforePeriod(true)); }
+      makeChart('chartForecast', {
+        type:'line',
+        data:{ labels: forecastLabels, datasets:[{ label:'Saldo projetado', data: forecastSeries, borderColor:'#7c3aed', backgroundColor:'rgba(124,58,237,.15)', fill:true, tension:.25 }]},
+        options:{ responsive:true, maintainAspectRatio:false }
+      });
+
+      renderExecutiveSummary();
+    }
+
+    function renderCashFlow(){
       const tbody = document.getElementById('cashFlowTable');
-      const previousBalance = getBalanceBeforePeriod();
-      const entries = getEntriesInPeriod().sort((a,b) => a.date.localeCompare(b.date));
+      const includeForecast = document.getElementById('flowMode')?.value === 'forecast';
+      const previousBalance = getBalanceBeforePeriod(includeForecast);
+      const entries = (includeForecast ? getFilteredEntries(true) : getFilteredEntries(false)).sort((a,b)=>a.date.localeCompare(b.date));
       let running = previousBalance;
-      const initialRow = `<tr><td>${formatDateBR(state.filterStart)}</td><td><strong>Saldo anterior ao período</strong></td><td>-</td><td>-</td><td>-</td><td><span class="pill once">Base</span></td><td>${currency.format(0)}</td><td>${currency.format(running)}</td><td>-</td></tr>`;
-      if (!entries.length) { tbody.innerHTML = initialRow + '<tr><td colspan="9" class="muted">Nenhum evento no intervalo selecionado.</td></tr>'; return; }
+      const initialRow = `<tr><td>${formatDateBR(state.filterStart)}</td><td><strong>Saldo anterior ao período</strong></td><td>-</td><td>-</td><td>-</td><td><span class="pill once">Base</span></td><td>-</td><td>${currency.format(0)}</td><td>${currency.format(running)}</td><td>-</td></tr>`;
+      if(!entries.length){ tbody.innerHTML = initialRow + '<tr><td colspan="10" class="muted">Nenhum evento no intervalo selecionado.</td></tr>'; return; }
       tbody.innerHTML = initialRow + entries.map(entry => {
-        running += entry.type === 'income' ? Number(entry.amount) : -Number(entry.amount);
-        return `<tr><td>${formatDateBR(entry.date)}</td><td><strong>${escapeHtml(entry.description)}</strong><br><span class="small muted">${escapeHtml(entry.notes || '')}</span></td><td>${escapeHtml(entry.category)}</td><td>${escapeHtml(entry.identifier || entry.occurrenceLabel || '-')}</td><td>${escapeHtml(entry.status || '-')}</td><td><span class="pill ${entry.type}">${entry.type === 'income' ? 'Receita' : 'Despesa'}</span></td><td>${entry.type === 'expense' ? '-' : '+'}${currency.format(Number(entry.amount))}</td><td>${currency.format(running)}</td><td>${entry.isRecurring ? `<button class="btn-danger" onclick="removeOccurrence('${entry.occurrenceKey}')">Excluir parcela</button>` : '-'}</td></tr>`;
+        running += entry.type==='income' ? Number(entry.amount) : -Number(entry.amount);
+        return `<tr>
+          <td>${formatDateBR(entry.date)}</td>
+          <td><strong>${escapeHtml(entry.description)}</strong><br><span class="small muted">${escapeHtml(entry.notes || '')}</span></td>
+          <td>${escapeHtml(entry.category)}</td>
+          <td>${escapeHtml(entry.identifier || entry.occurrenceLabel || '-')}</td>
+          <td>${escapeHtml(entry.status || '-')}</td>
+          <td><span class="pill ${entry.type}">${entry.type === 'income' ? 'Receita' : 'Despesa'}</span></td>
+          <td>${entry.timeline_type === 'forecast' ? '<span class="pill future">Previsão</span>' : '<span class="pill once">Normal</span>'}</td>
+          <td>${entry.type === 'expense' ? '-' : '+'}${currency.format(Number(entry.amount))}</td>
+          <td>${currency.format(running)}</td>
+          <td>${entry.isRecurring ? `<button class="btn-danger" onclick="removeOccurrence('${entry.occurrenceKey}')">Excluir parcela</button>` : '-'}</td>
+        </tr>`;
       }).join('');
     }
-    function renderReports() {
-      const { previousBalance, totalIncome, totalExpense, currentBalance, entries } = calculateMetrics();
+    function renderReports(){
+      const { previousBalance, totalIncome, totalExpense, currentBalance, futureProjectedBalance, entries } = calculateMetrics();
       const recurringCount = state.entries.filter(e => e.isRecurring).length;
-      const singleCount = state.entries.filter(e => !e.isRecurring).length;
+      const forecastCount = state.entries.filter(e => e.timeline_type === 'forecast').length;
       document.getElementById('reportSummary').innerHTML = `
         <div class="summary-item"><span>Saldo anterior</span><strong>${currency.format(previousBalance)}</strong></div>
         <div class="summary-item"><span>Total de receitas</span><strong>${currency.format(totalIncome)}</strong></div>
         <div class="summary-item"><span>Total de despesas</span><strong>${currency.format(totalExpense)}</strong></div>
         <div class="summary-item"><span>Saldo atual</span><strong>${currency.format(currentBalance)}</strong></div>
+        <div class="summary-item"><span>Saldo projetado</span><strong>${currency.format(futureProjectedBalance)}</strong></div>
+        <div class="summary-item"><span>Lançamentos recorrentes</span><strong>${recurringCount}</strong></div>
+        <div class="summary-item"><span>Lançamentos de previsão</span><strong>${forecastCount}</strong></div>
         <div class="summary-item"><span>Eventos no período</span><strong>${entries.length}</strong></div>
-        <div class="summary-item"><span>Lançamentos recorrentes cadastrados</span><strong>${recurringCount}</strong></div>
-        <div class="summary-item"><span>Lançamentos únicos cadastrados</span><strong>${singleCount}</strong></div>`;
-      const impacts = [...entries].sort((a,b) => Number(b.amount) - Number(a.amount)).slice(0, 8);
-      document.getElementById('topImpacts').innerHTML = impacts.length ? impacts.map(entry => `<div class="summary-item"><div><strong>${escapeHtml(entry.description)}</strong><br><span class="small muted">${formatDateBR(entry.date)} • ${escapeHtml(entry.category)} • ${escapeHtml(entry.identifier || entry.occurrenceLabel || '-')}</span></div><span class="tag">${currency.format(Number(entry.amount))}</span></div>`).join('') : '<div class="summary-item"><span class="muted">Sem dados para análise.</span></div>';
+      `;
+      const impacts = [...entries].sort((a,b) => Number(b.amount) - Number(a.amount)).slice(0, 10);
+      document.getElementById('topImpacts').innerHTML = impacts.length ? impacts.map(entry => `<div class="summary-item"><div><strong>${escapeHtml(entry.description)}</strong><br><span class="small muted">${formatDateBR(entry.date)} • ${escapeHtml(entry.category)} • ${escapeHtml(entry.timeline_type === 'forecast' ? 'Previsão' : 'Normal')}</span></div><span class="tag">${currency.format(Number(entry.amount))}</span></div>`).join('') : '<div class="summary-item"><span class="muted">Sem dados para análise.</span></div>';
     }
-    function renderSettings() {
+    function renderSettings(){
       document.getElementById('initialBalance').value = Number(state.settings.initial_balance || 0);
       document.getElementById('currencyCode').value = state.settings.currency_code || 'BRL';
       document.getElementById('themeName').value = state.settings.theme_name || 'light';
     }
-    function renderAll() {
+    function renderAll(){
       renderMetrics(); renderCategoryOptions(); renderCategoryList(); renderEntriesTable();
-      renderCategorySummary(); renderPeriodChart(); renderCashFlow(); renderReports(); renderSettings();
+      renderCategorySummary(); renderInsights(); renderCashFlow(); renderReports(); renderSettings(); renderCharts();
       saveLocalState(); updateSyncStatus();
     }
 
-    function addCategory() {
+    function addCategory(){
       const name = document.getElementById('newCategoryName').value.trim();
       const type = document.getElementById('newCategoryType').value;
-      if (!name) return;
-      if (state.categories.some(c => c.name.toLowerCase() === name.toLowerCase())) { alert('Essa categoria já existe.'); return; }
+      if(!name) return;
+      if(state.categories.some(c => c.name.toLowerCase() === name.toLowerCase())){ alert('Essa categoria já existe.'); return; }
       state.categories.push({ id: uid(), name, type, updated_at: nowIso() });
       document.getElementById('newCategoryName').value = '';
       renderAll();
     }
-    function removeCategory(id) { if (!confirm('Excluir esta categoria?')) return; state.categories = state.categories.filter(c => c.id !== id); renderAll(); }
-    function saveSettings() {
-      state.settings = { ...state.settings, initial_balance: Number(document.getElementById('initialBalance').value || 0), currency_code: document.getElementById('currencyCode').value, theme_name: document.getElementById('themeName').value, updated_at: nowIso() };
+    function removeCategory(id){ if(!confirm('Excluir esta categoria?')) return; state.categories = state.categories.filter(c => c.id !== id); renderAll(); }
+    function saveSettings(){
+      state.settings = { ...state.settings, initial_balance:Number(document.getElementById('initialBalance').value || 0), currency_code:document.getElementById('currencyCode').value, theme_name:document.getElementById('themeName').value, updated_at:nowIso() };
       updateCurrencyFormatter(); renderAll(); alert('Configurações salvas.');
     }
-    function removeEntry(id) {
+    function removeEntry(id){
       state.entries = state.entries.filter(entry => entry.id !== id);
-      Object.keys(state.excludedOccurrences).forEach(key => { if (key.startsWith(id + '__')) delete state.excludedOccurrences[key]; });
-      if (state.editingId === id) { state.editingId = null; document.getElementById('saveButton').textContent = 'Salvar lançamento'; }
+      Object.keys(state.excludedOccurrences).forEach(key => { if(key.startsWith(id + '__')) delete state.excludedOccurrences[key]; });
+      if(state.editingId === id){ state.editingId = null; document.getElementById('saveButton').textContent = 'Salvar lançamento'; }
       renderAll();
     }
-    function editEntry(id) {
-      const entry = state.entries.find(item => item.id === id); if (!entry) return;
+    function editEntry(id){
+      const entry = state.entries.find(item => item.id === id); if(!entry) return;
       state.editingId = id;
       document.getElementById('type').value = entry.type;
       document.getElementById('date').value = entry.date;
@@ -559,6 +687,7 @@
       document.getElementById('account').value = entry.account || '';
       document.getElementById('identifier').value = entry.identifier || '';
       document.getElementById('notes').value = entry.notes || '';
+      document.getElementById('timelineType').value = entry.timeline_type || 'normal';
       document.getElementById('isRecurring').checked = !!entry.isRecurring;
       document.getElementById('recurringConfig').classList.toggle('hidden', !entry.isRecurring);
       document.getElementById('frequency').value = entry.frequency || 'monthly';
@@ -569,53 +698,51 @@
       document.querySelector('[data-tab="cadastro"]').click();
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-    function removeOccurrence(occurrenceKey) { if (!occurrenceKey) return; state.excludedOccurrences[occurrenceKey] = { id: uid(), occurrence_key: occurrenceKey, updated_at: nowIso() }; renderAll(); }
+    function removeOccurrence(occurrenceKey){ if(!occurrenceKey) return; state.excludedOccurrences[occurrenceKey] = { id: uid(), occurrence_key: occurrenceKey, updated_at: nowIso() }; renderAll(); }
 
-    async function signUp() {
-      if (!supabase) { setAuthMessage('Preencha <b>supabase-config.js</b> antes de criar conta.', true); return; }
+    async function signUp(){
+      if(!supabase){ setAuthMessage('Preencha <b>supabase-config.js</b> antes de criar conta.', true); return; }
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
       const name = document.getElementById('authName').value.trim();
-      if (!email || !password) { setAuthMessage('Informe e-mail e senha.', true); return; }
-      const { error } = await supabase.auth.signUp({ email, password, options: { data: { full_name: name || null } } });
-      if (error) { setAuthMessage(escapeHtml(error.message), true); return; }
-      setAuthMessage('Conta criada. Verifique seu e-mail para confirmação, se o projeto exigir confirmação.');
+      if(!email || !password){ setAuthMessage('Informe e-mail e senha.', true); return; }
+      const { error } = await supabase.auth.signUp({ email, password, options:{ data:{ full_name:name || null } } });
+      if(error){ setAuthMessage(escapeHtml(error.message), true); return; }
+      setAuthMessage('Conta criada. Verifique seu e-mail, se a confirmação estiver habilitada.');
     }
-    async function signIn() {
-      if (!supabase) { setAuthMessage('Preencha <b>supabase-config.js</b> antes de entrar.', true); return; }
+    async function signIn(){
+      if(!supabase){ setAuthMessage('Preencha <b>supabase-config.js</b> antes de entrar.', true); return; }
       const email = document.getElementById('authEmail').value.trim();
       const password = document.getElementById('authPassword').value;
       const { error, data } = await supabase.auth.signInWithPassword({ email, password });
-      if (error) { setAuthMessage(escapeHtml(error.message), true); return; }
+      if(error){ setAuthMessage(escapeHtml(error.message), true); return; }
       state.user = data.user; setAuthMessage('Login realizado com sucesso.'); updateSyncStatus(); await pullRemoteData(); await syncNow();
     }
-    async function resetPassword() {
-      if (!supabase) { setAuthMessage('Preencha <b>supabase-config.js</b> antes de usar recuperação de senha.', true); return; }
+    async function resetPassword(){
+      if(!supabase){ setAuthMessage('Preencha <b>supabase-config.js</b> antes de usar recuperação de senha.', true); return; }
       const email = document.getElementById('authEmail').value.trim();
-      if (!email) { setAuthMessage('Informe o e-mail para recuperação.', true); return; }
+      if(!email){ setAuthMessage('Informe o e-mail para recuperação.', true); return; }
       const { error } = await supabase.auth.resetPasswordForEmail(email, { redirectTo: window.location.origin + window.location.pathname });
-      if (error) { setAuthMessage(escapeHtml(error.message), true); return; }
+      if(error){ setAuthMessage(escapeHtml(error.message), true); return; }
       setAuthMessage('E-mail de recuperação enviado.');
     }
-    async function signOut() {
-      if (!supabase) { setAuthMessage('Modo local ativo. Não há sessão na nuvem.', true); return; }
+    async function signOut(){
+      if(!supabase){ setAuthMessage('Modo local ativo. Não há sessão na nuvem.', true); return; }
       await supabase.auth.signOut(); state.user = null; setAuthMessage('Sessão encerrada.'); updateSyncStatus();
     }
-
-    function mergeByUpdatedAt(localRows, remoteRows, key = 'id') {
+    function mergeByUpdatedAt(localRows, remoteRows, key='id'){
       const map = new Map();
       [...(localRows || []), ...(remoteRows || [])].forEach(row => {
-        const existing = map.get(row[key]); if (!existing) { map.set(row[key], row); return; }
+        const existing = map.get(row[key]); if(!existing){ map.set(row[key], row); return; }
         const existingTime = new Date(existing.updated_at || 0).getTime();
         const rowTime = new Date(row.updated_at || 0).getTime();
-        if (rowTime >= existingTime) map.set(row[key], row);
+        if(rowTime >= existingTime) map.set(row[key], row);
       });
       return Array.from(map.values());
     }
-
-    async function pullRemoteData() {
-      if (!supabase || !state.user) return;
-      try {
+    async function pullRemoteData(){
+      if(!supabase || !state.user) return;
+      try{
         const userId = state.user.id;
         const [entriesRes, categoriesRes, settingsRes, excludedRes] = await Promise.all([
           supabase.from('budget_entries').select('*').eq('user_id', userId),
@@ -623,81 +750,73 @@
           supabase.from('budget_settings').select('*').eq('user_id', userId).maybeSingle(),
           supabase.from('budget_excluded_occurrences').select('*').eq('user_id', userId)
         ]);
-        if (entriesRes.error) throw entriesRes.error;
-        if (categoriesRes.error) throw categoriesRes.error;
-        if (settingsRes.error && settingsRes.error.code !== 'PGRST116') throw settingsRes.error;
-        if (excludedRes.error) throw excludedRes.error;
-
+        if(entriesRes.error) throw entriesRes.error;
+        if(categoriesRes.error) throw categoriesRes.error;
+        if(settingsRes.error && settingsRes.error.code !== 'PGRST116') throw settingsRes.error;
+        if(excludedRes.error) throw excludedRes.error;
         state.entries = mergeByUpdatedAt(state.entries, entriesRes.data || [], 'id');
         state.categories = mergeByUpdatedAt(state.categories, categoriesRes.data || [], 'id');
-        if (!state.categories.length) state.categories = DEFAULT_CATEGORIES.slice();
-        if (settingsRes.data) {
+        if(!state.categories.length) state.categories = DEFAULT_CATEGORIES.slice();
+        if(settingsRes.data){
           const localTime = new Date(state.settings.updated_at || 0).getTime();
           const remoteTime = new Date(settingsRes.data.updated_at || 0).getTime();
-          if (remoteTime >= localTime) state.settings = settingsRes.data;
+          if(remoteTime >= localTime) state.settings = settingsRes.data;
         }
         const excludedMap = {};
         Object.keys(state.excludedOccurrences || {}).forEach(k => excludedMap[k] = state.excludedOccurrences[k]);
         (excludedRes.data || []).forEach(item => {
           const existing = excludedMap[item.occurrence_key];
-          if (!existing || new Date(item.updated_at || 0).getTime() >= new Date(existing.updated_at || 0).getTime()) excludedMap[item.occurrence_key] = item;
+          if(!existing || new Date(item.updated_at || 0).getTime() >= new Date(existing.updated_at || 0).getTime()) excludedMap[item.occurrence_key] = item;
         });
         state.excludedOccurrences = excludedMap;
         updateCurrencyFormatter(); state.lastSyncAt = nowIso(); renderAll();
-      } catch (error) {
-        updateSyncStatus('Falha ao baixar dados: ' + escapeHtml(error.message || String(error)));
-      }
+      } catch(error){ updateSyncStatus('Falha ao baixar dados: ' + escapeHtml(error.message || String(error))); }
     }
-
-    async function pushRemoteData() {
-      if (!supabase || !state.user) return;
+    async function pushRemoteData(){
+      if(!supabase || !state.user) return;
       const userId = state.user.id;
-      const entriesPayload = state.entries.map(e => ({ ...e, user_id: userId }));
-      const categoriesPayload = state.categories.map(c => ({ ...c, user_id: userId }));
-      const settingsPayload = { ...state.settings, id: userId, user_id: userId, updated_at: state.settings.updated_at || nowIso() };
-      const excludedPayload = Object.values(state.excludedOccurrences).map(item => ({ ...item, user_id: userId }));
-      if (entriesPayload.length) { const { error } = await supabase.from('budget_entries').upsert(entriesPayload); if (error) throw error; }
-      if (categoriesPayload.length) { const { error } = await supabase.from('budget_categories').upsert(categoriesPayload); if (error) throw error; }
-      { const { error } = await supabase.from('budget_settings').upsert(settingsPayload); if (error) throw error; }
-      if (excludedPayload.length) { const { error } = await supabase.from('budget_excluded_occurrences').upsert(excludedPayload); if (error) throw error; }
+      const entriesPayload = state.entries.map(e => ({ ...e, user_id:userId }));
+      const categoriesPayload = state.categories.map(c => ({ ...c, user_id:userId }));
+      const settingsPayload = { ...state.settings, id:userId, user_id:userId, updated_at:state.settings.updated_at || nowIso() };
+      const excludedPayload = Object.values(state.excludedOccurrences).map(item => ({ ...item, user_id:userId }));
+      if(entriesPayload.length){ const { error } = await supabase.from('budget_entries').upsert(entriesPayload); if(error) throw error; }
+      if(categoriesPayload.length){ const { error } = await supabase.from('budget_categories').upsert(categoriesPayload); if(error) throw error; }
+      { const { error } = await supabase.from('budget_settings').upsert(settingsPayload); if(error) throw error; }
+      if(excludedPayload.length){ const { error } = await supabase.from('budget_excluded_occurrences').upsert(excludedPayload); if(error) throw error; }
     }
-
-    async function syncNow() {
-      if (!supabase) { alert('Supabase ainda não configurado.'); return; }
-      if (!state.user) { alert('Faça login para sincronizar.'); return; }
-      if (state.syncInProgress) return;
-      try {
+    async function syncNow(){
+      if(!supabase){ alert('Supabase ainda não configurado.'); return; }
+      if(!state.user){ alert('Faça login para sincronizar.'); return; }
+      if(state.syncInProgress) return;
+      try{
         state.syncInProgress = true; updateSyncStatus('Sincronizando...');
         await pullRemoteData(); await pushRemoteData();
         state.lastSyncAt = new Date().toLocaleString('pt-BR');
         saveLocalState(); updateSyncStatus('Sincronização concluída.');
-      } catch (error) {
-        updateSyncStatus('Falha na sincronização: ' + escapeHtml(error.message || String(error)));
-      } finally { state.syncInProgress = false; }
+      } catch(error){ updateSyncStatus('Falha na sincronização: ' + escapeHtml(error.message || String(error))); }
+      finally { state.syncInProgress = false; }
     }
-
-    async function restoreSession() {
-      if (!supabase) return;
+    async function restoreSession(){
+      if(!supabase) return;
       const { data } = await supabase.auth.getSession();
       state.user = data.session?.user || null;
       supabase.auth.onAuthStateChange(async (_event, session) => {
-        state.user = session?.user || null; updateSyncStatus(); if (state.user) await pullRemoteData();
+        state.user = session?.user || null; updateSyncStatus(); if(state.user) await pullRemoteData();
       });
-      updateSyncStatus(); if (state.user) await pullRemoteData();
+      updateSyncStatus(); if(state.user) await pullRemoteData();
     }
-
-    function exportBackup() {
-      const payload = JSON.stringify({ entries: state.entries, categories: state.categories, settings: state.settings, excludedOccurrences: state.excludedOccurrences, exportedAt: nowIso() }, null, 2);
-      const blob = new Blob([payload], { type: 'application/json' });
+    function exportBackup(){
+      const payload = JSON.stringify({ entries:state.entries, categories:state.categories, settings:state.settings, excludedOccurrences:state.excludedOccurrences, exportedAt:nowIso() }, null, 2);
+      const blob = new Blob([payload], { type:'application/json' });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = `orcamento-domestico-cloud-backup-${formatDateInput(new Date())}.json`;
+      a.href = url; a.download = `orcamento-domestico-bi-backup-${formatDateInput(new Date())}.json`;
       document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
     }
-    function importBackup(file) {
+    function importBackup(file){
       return file.text().then(text => {
         const parsed = JSON.parse(text);
-        if (!Array.isArray(parsed.entries)) throw new Error('Arquivo inválido');
+        if(!Array.isArray(parsed.entries)) throw new Error('Arquivo inválido');
         state.entries = parsed.entries || [];
         state.categories = parsed.categories || DEFAULT_CATEGORIES.slice();
         state.settings = parsed.settings || state.settings;
@@ -705,7 +824,7 @@
         updateCurrencyFormatter(); renderAll();
       });
     }
-    function saveEntryForm(e) {
+    function saveEntryForm(e){
       e.preventDefault();
       const mode = document.getElementById('recurringMode').value;
       const entry = {
@@ -719,19 +838,20 @@
         account: document.getElementById('account').value.trim(),
         identifier: document.getElementById('identifier').value.trim(),
         notes: document.getElementById('notes').value.trim(),
+        timeline_type: document.getElementById('timelineType').value,
         isRecurring: document.getElementById('isRecurring').checked,
         frequency: document.getElementById('frequency').value,
         recurringMode: mode,
         installments: mode === 'installments' ? Number(document.getElementById('installments').value || 1) : null,
         updated_at: nowIso()
       };
-      if (state.editingId) {
+      if(state.editingId){
         state.entries = state.entries.map(item => item.id === state.editingId ? entry : item);
-        Object.keys(state.excludedOccurrences).forEach(key => { if (key.startsWith(state.editingId + '__')) delete state.excludedOccurrences[key]; });
+        Object.keys(state.excludedOccurrences).forEach(key => { if(key.startsWith(state.editingId + '__')) delete state.excludedOccurrences[key]; });
       } else {
         state.entries.push(entry);
       }
-      if (entry.category && !state.categories.some(c => c.name.toLowerCase() === entry.category.toLowerCase())) {
+      if(entry.category && !state.categories.some(c => c.name.toLowerCase() === entry.category.toLowerCase())){
         state.categories.push({ id: uid(), name: entry.category, type: entry.type, updated_at: nowIso() });
       }
       state.editingId = null;
@@ -742,14 +862,14 @@
       document.getElementById('installmentsLabel').classList.remove('hidden');
       renderAll();
     }
-
-    function bindEvents() {
+    function bindEvents(){
       document.querySelectorAll('.tab').forEach(button => {
         button.addEventListener('click', () => {
           document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
           document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.add('hidden'));
           button.classList.add('active');
           document.getElementById(button.dataset.tab).classList.remove('hidden');
+          if(button.dataset.tab === 'bi') renderCharts();
         });
       });
       document.getElementById('filterStart').value = state.filterStart;
@@ -757,6 +877,8 @@
       document.getElementById('filterStart').addEventListener('change', e => { state.filterStart = e.target.value; renderAll(); });
       document.getElementById('filterEnd').addEventListener('change', e => { state.filterEnd = e.target.value; renderAll(); });
       document.getElementById('filterSearch').addEventListener('input', e => { state.filterSearch = e.target.value; renderAll(); });
+      document.getElementById('flowMode').addEventListener('change', () => renderAll());
+      document.getElementById('forecastMonths').addEventListener('change', () => renderAll());
 
       const recurringCheckbox = document.getElementById('isRecurring');
       const recurringConfig = document.getElementById('recurringConfig');
@@ -771,37 +893,22 @@
       document.getElementById('exportJson').addEventListener('click', exportBackup);
       document.getElementById('importJsonButton').addEventListener('click', () => document.getElementById('importJson').click());
       document.getElementById('importJson').addEventListener('change', async (event) => {
-        const file = event.target.files && event.target.files[0];
-        if (!file) return;
-        try { await importBackup(file); alert('Backup importado com sucesso.'); }
-        catch (error) { alert('Não foi possível importar o arquivo. Verifique se é um JSON válido do app.'); }
+        const file = event.target.files && event.target.files[0]; if(!file) return;
+        try{ await importBackup(file); alert('Backup importado com sucesso.'); }
+        catch(error){ alert('Não foi possível importar o arquivo. Verifique se é um JSON válido do app.'); }
         event.target.value = '';
       });
 
-      window.addEventListener('online', () => { updateSyncStatus('Internet disponível.'); if (supabase && state.user) syncNow(); });
+      window.addEventListener('online', () => { updateSyncStatus('Internet disponível.'); if(supabase && state.user) syncNow(); });
       window.addEventListener('offline', () => updateSyncStatus('Sem internet. O app segue em modo offline.'));
     }
 
-    window.editEntry = editEntry;
-    window.removeEntry = removeEntry;
-    window.removeOccurrence = removeOccurrence;
-    window.addCategory = addCategory;
-    window.removeCategory = removeCategory;
-    window.saveSettings = saveSettings;
-    window.openAuthModal = openAuthModal;
-    window.closeAuthModal = closeAuthModal;
-    window.openManual = openManual;
-    window.closeManual = closeManual;
-    window.signIn = signIn;
-    window.signUp = signUp;
-    window.signOut = signOut;
-    window.resetPassword = resetPassword;
-    window.syncNow = syncNow;
+    window.openAuthModal = openAuthModal; window.closeAuthModal = closeAuthModal; window.openManual = openManual; window.closeManual = closeManual;
+    window.signIn = signIn; window.signUp = signUp; window.signOut = signOut; window.resetPassword = resetPassword; window.syncNow = syncNow;
+    window.editEntry = editEntry; window.removeEntry = removeEntry; window.removeOccurrence = removeOccurrence;
+    window.addCategory = addCategory; window.removeCategory = removeCategory; window.saveSettings = saveSettings;
 
-    loadLocalState();
-    bindEvents();
-    renderAll();
-    restoreSession();
+    loadLocalState(); bindEvents(); renderAll(); restoreSession();
   </script>
 </body>
 </html>

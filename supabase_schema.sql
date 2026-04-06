@@ -22,6 +22,7 @@ create table if not exists public.budget_entries (
   account text,
   identifier text,
   notes text,
+  timeline_type text not null default 'normal',
   isRecurring boolean not null default false,
   frequency text,
   recurringMode text,
@@ -50,22 +51,38 @@ alter table public.budget_entries enable row level security;
 alter table public.budget_settings enable row level security;
 alter table public.budget_excluded_occurrences enable row level security;
 
-create policy if not exists "categories_select_own" on public.budget_categories for select using (auth.uid() = user_id);
-create policy if not exists "categories_insert_own" on public.budget_categories for insert with check (auth.uid() = user_id);
-create policy if not exists "categories_update_own" on public.budget_categories for update using (auth.uid() = user_id);
-create policy if not exists "categories_delete_own" on public.budget_categories for delete using (auth.uid() = user_id);
+drop policy if exists "categories_select_own" on public.budget_categories;
+drop policy if exists "categories_insert_own" on public.budget_categories;
+drop policy if exists "categories_update_own" on public.budget_categories;
+drop policy if exists "categories_delete_own" on public.budget_categories;
+create policy "categories_select_own" on public.budget_categories for select using (auth.uid() = user_id);
+create policy "categories_insert_own" on public.budget_categories for insert with check (auth.uid() = user_id);
+create policy "categories_update_own" on public.budget_categories for update using (auth.uid() = user_id);
+create policy "categories_delete_own" on public.budget_categories for delete using (auth.uid() = user_id);
 
-create policy if not exists "entries_select_own" on public.budget_entries for select using (auth.uid() = user_id);
-create policy if not exists "entries_insert_own" on public.budget_entries for insert with check (auth.uid() = user_id);
-create policy if not exists "entries_update_own" on public.budget_entries for update using (auth.uid() = user_id);
-create policy if not exists "entries_delete_own" on public.budget_entries for delete using (auth.uid() = user_id);
+drop policy if exists "entries_select_own" on public.budget_entries;
+drop policy if exists "entries_insert_own" on public.budget_entries;
+drop policy if exists "entries_update_own" on public.budget_entries;
+drop policy if exists "entries_delete_own" on public.budget_entries;
+create policy "entries_select_own" on public.budget_entries for select using (auth.uid() = user_id);
+create policy "entries_insert_own" on public.budget_entries for insert with check (auth.uid() = user_id);
+create policy "entries_update_own" on public.budget_entries for update using (auth.uid() = user_id);
+create policy "entries_delete_own" on public.budget_entries for delete using (auth.uid() = user_id);
 
-create policy if not exists "settings_select_own" on public.budget_settings for select using (auth.uid() = user_id);
-create policy if not exists "settings_insert_own" on public.budget_settings for insert with check (auth.uid() = user_id);
-create policy if not exists "settings_update_own" on public.budget_settings for update using (auth.uid() = user_id);
-create policy if not exists "settings_delete_own" on public.budget_settings for delete using (auth.uid() = user_id);
+drop policy if exists "settings_select_own" on public.budget_settings;
+drop policy if exists "settings_insert_own" on public.budget_settings;
+drop policy if exists "settings_update_own" on public.budget_settings;
+drop policy if exists "settings_delete_own" on public.budget_settings;
+create policy "settings_select_own" on public.budget_settings for select using (auth.uid() = user_id);
+create policy "settings_insert_own" on public.budget_settings for insert with check (auth.uid() = user_id);
+create policy "settings_update_own" on public.budget_settings for update using (auth.uid() = user_id);
+create policy "settings_delete_own" on public.budget_settings for delete using (auth.uid() = user_id);
 
-create policy if not exists "excluded_select_own" on public.budget_excluded_occurrences for select using (auth.uid() = user_id);
-create policy if not exists "excluded_insert_own" on public.budget_excluded_occurrences for insert with check (auth.uid() = user_id);
-create policy if not exists "excluded_update_own" on public.budget_excluded_occurrences for update using (auth.uid() = user_id);
-create policy if not exists "excluded_delete_own" on public.budget_excluded_occurrences for delete using (auth.uid() = user_id);
+drop policy if exists "excluded_select_own" on public.budget_excluded_occurrences;
+drop policy if exists "excluded_insert_own" on public.budget_excluded_occurrences;
+drop policy if exists "excluded_update_own" on public.budget_excluded_occurrences;
+drop policy if exists "excluded_delete_own" on public.budget_excluded_occurrences;
+create policy "excluded_select_own" on public.budget_excluded_occurrences for select using (auth.uid() = user_id);
+create policy "excluded_insert_own" on public.budget_excluded_occurrences for insert with check (auth.uid() = user_id);
+create policy "excluded_update_own" on public.budget_excluded_occurrences for update using (auth.uid() = user_id);
+create policy "excluded_delete_own" on public.budget_excluded_occurrences for delete using (auth.uid() = user_id);
