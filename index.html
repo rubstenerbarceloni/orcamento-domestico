@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<button onclick="abrirManual()" style="margin-top:10px;background:#1d4ed8;color:white;padding:10px;border:none;border-radius:10px;">
+📘 Manual do Usuário
+</button>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
@@ -708,6 +711,19 @@
     }
 
     loadState(); bindEvents(); renderAll();
+    function abrirManual() {
+  alert(`
+📘 MANUAL DO USUÁRIO
+
+1. Use "Lançamentos" para cadastrar receitas e despesas
+2. Ative recorrência para parcelas ou lançamentos fixos
+3. Use o painel para visualizar saldo e gráficos
+4. Acompanhe o fluxo de caixa para ver evolução do saldo
+5. Faça backup regularmente
+
+Versão completa disponível no PDF.
+  `);
+}
   </script>
 </body>
 </html>
