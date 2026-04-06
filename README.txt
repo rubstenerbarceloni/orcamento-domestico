@@ -14,3 +14,9 @@ Atualização no GitHub:
 3. Confirme as alterações.
 4. No Windows, recarregue com Ctrl + F5 ou use janela anônima.
 5. No iPhone, se necessário, remova o app da tela inicial e adicione de novo.
+
+
+V3 ajustada:
+- cache renovado
+- base sem duplicação de supabase
+- pronta para substituir a versão anterior

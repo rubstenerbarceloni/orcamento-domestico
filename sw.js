@@ -1,4 +1,4 @@
-const CACHE_NAME = 'orcamento-domestico-v2-completa-v2';
+const CACHE_NAME = 'orcamento-domestico-v3-ajustada-v1';
 const ASSETS = ['./','./index.html','./manifest.webmanifest','./supabase-config.js','./supabase_schema.sql','./README.txt','./icon-192.png','./icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE_NAME).then(c => c.addAll(ASSETS))); self.skipWaiting(); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(keys => Promise.all(keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))))); self.clients.claim(); });
