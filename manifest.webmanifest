@@ -1,10 +1,10 @@
 {
-  "name": "Orçamento Doméstico BI",
-  "short_name": "Orçamento BI",
-  "description": "Controle financeiro com dashboard BI, previsões, login e nuvem.",
+  "name": "Orçamento Doméstico V2",
+  "short_name": "Orçamento V2",
+  "description": "App financeiro PWA otimizado, blindado e com BI.",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#f8fafc",
+  "background_color": "#f4f7fb",
   "theme_color": "#0f172a",
   "lang": "pt-BR",
   "icons": [
